@@ -33,6 +33,9 @@
 .content-wrapper .navbar {
   z-index: auto;
 }
+.swal2-container{
+    z-index: 9000;
+}
 
 /*
 * Content

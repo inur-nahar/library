@@ -221,6 +221,8 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center border border-light rounded px-3">
@@ -358,6 +360,8 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ asset('frontend/js/jquery.min.js') }}"> </script>
+
     <script src="{{ asset('backend/assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/js/bootstrap.js') }}"></script>
@@ -375,7 +379,7 @@
     <!-- Page JS -->
     <script src="{{ asset('backend/assets/js/dashboards-analytics.js') }}"></script>
     <script src="{{ asset('backend/assets/js/boxicons.js') }}"></script>
-
+    @include('sweetalert::alert')
     @stack('additional_js')
   </body>
 </html>

@@ -33,20 +33,22 @@
     </td>
     <td>
         <div class="form-check form-switch toggle-switch">
-            <input class="form-check-input" type="checkbox" id="toggleSwitch2" {{$category->status ? 'checked':''}}>
+            <input class="form-check-input change_status" type="checkbox" id="toggleSwitch2" {{$category->status ? 'checked':''}} data-category-id="{{ $category->id }}">
           </div>
     </td>
     <td>
         <div class="action">
-            <a href="{{ route('category.edit',$category->id) }}" class="btn-sm main-btn info-btn btn-hover">
+            <a href="{{ route('category.edit',$category->id) }}" class="btn-sm main-btn info-btn btn-hover btn btn-success">
                 <box-icon name='edit'></box-icon>
             </a>
 
-            <box-icon class="delete_btn" name='trash' type='solid' ></box-icon>
+            <button  class="btn-sm main-btn info-btn btn-hover btn btn btn-danger">
+              <box-icon class="delete_btn " name='trash' type='solid' ></box-icon>
             <form action="{{ route('category.delete',$category->id) }}" method="POST">
     @csrf
     @method('DELETE')
 </form>
+            </button>
           </div>
       </td>
   </tr>
@@ -114,8 +116,28 @@ $('.delete_btn').on('click',function(){
     $(this).next('form').submit();
   }
 });
-})
 
+})
+</script>
+<script>
+    $('.change_status').on('change',function(){
+        $.ajax({
+            url:"{{ route('category.change_status') }}",
+            method:"GET",
+            data:{
+                category_id:$(this).data('category-id')
+            },
+            success:function(res){
+                Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Status Changed Successfully",
+  showConfirmButton: false,
+  timer: 1500
+});
+            }
+        })
+         })
 </script>
 
 @endpush

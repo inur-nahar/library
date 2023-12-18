@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 public function index(){
-    $categories = Category::paginate(5);
+    $categories = Category::paginate(25);
 
     return view('backend.category.list', compact('categories'));
 }
@@ -29,11 +29,13 @@ public function store(Request $request){
     $category->name =$request->name;
     $category->slug = $category_slug;
     $category->save();
+    toast('Your Category has been created!','success');
+
 return back();
 }
 
 public function edit($id){
-    $categories = Category::paginate(5);
+    $categories = Category::paginate(25);
     $editdata = Category::findOrFail($id, ['id','name']);
 
     return view('backend.category.list', compact('categories','editdata'));
@@ -54,6 +56,7 @@ public function update(Request $request, $id){
     $category->name =$request->name;
     $category->slug = $category_slug;
     $category->save();
+    toast('Your Category Updated Successfully!','success');
 return back();
 }
 public function delete($id){
@@ -68,6 +71,26 @@ return back();
 
 
 }
+// public function change_status(Request $request){
+//     $post = Category::find($request->category_id);
+//     if($category->status){
+//        $category->status = false;
 
+//     }else{
+//         $category->status = true;
 
+//     }
+//     $category->save();
+//  }
+
+public function change_status(Request $request){
+    $category = Category::find($request-> category_id);
+    if($category->status){
+        $category->status = false;
+    }else{
+        $category->status = true;
+    }
+ $category->save();
+
+}
 }
