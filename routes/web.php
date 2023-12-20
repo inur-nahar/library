@@ -4,19 +4,20 @@ use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
+Route::prefix('/categories')->controller(CategoryController::class)->name('category.')->group(function(){
+
 //index
-Route::get('/categories',[CategoryController::class,'index'])->name('category.index');
+Route::get('/','index')->name('index');
 //create
 Route::get('/categories/create',[CategoryController::class,'create'])->name('category.create');
 //store
-Route::post('/categories/store',[CategoryController::class,'store'])->name('category.store');
-//view
+Route::post('/store','store')->name('store');
 //edit
-Route::get('/categories/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+Route::get('/edit/{id}','edit')->name('edit');
 //update
-Route::put('/categories/update/{id}',[CategoryController::class,'update'])->name('category.update');
+Route::put('/update/{id}','update')->name('update');
 //delete
-Route::delete('/categories/delete/{id}',[CategoryController::class,'delete'])->name('category.delete');
-Route::get('/categories/change-status',[CategoryController::class,'change_status'])->name('category.change_status');
-
+Route::delete('/delete/{id}','delete')->name('delete');
+Route::get('/change-status','change_status')->name('change_status');
+});
 
