@@ -38,13 +38,13 @@
     </td>
     <td>
         <div class="action">
-            <a href="{{ route('category.edit',$category->id) }}" class="btn-sm main-btn info-btn btn-hover btn btn-success">
+            <a href="{{ route('admin.category.edit',$category->id) }}" class="btn-sm main-btn info-btn btn-hover btn btn-success">
                 <box-icon name='edit'></box-icon>
             </a>
 
             <button  class="btn-sm main-btn info-btn btn-hover btn btn btn-danger">
               <box-icon class="delete_btn " name='trash' type='solid' ></box-icon>
-            <form action="{{ route('category.delete',$category->id) }}" method="POST">
+            <form action="{{ route('admin.category.delete',$category->id) }}" method="POST">
     @csrf
     @method('DELETE')
 </form>
@@ -68,7 +68,7 @@
             <div class="card mb-4">
               <h5 class="card-header">{{ isset($editdata) ? 'Update Category' : 'Create New Category'}}</h5>
 
-            <form action="{{ isset($editdata) ? route('category.update',$editdata->id) : route('category.store') }}" method="POST">
+            <form action="{{ isset($editdata) ? route('admin.category.update',$editdata->id) : route('admin.category.store') }}" method="POST">
                 @isset($editdata)
 @method('PUT')
                 @endisset
@@ -122,7 +122,7 @@ $('.delete_btn').on('click',function(){
 <script>
     $('.change_status').on('change',function(){
         $.ajax({
-            url:"{{ route('category.change_status') }}",
+            url:"{{ route('admin.category.change_status') }}",
             method:"GET",
             data:{
                 category_id:$(this).data('category-id')
